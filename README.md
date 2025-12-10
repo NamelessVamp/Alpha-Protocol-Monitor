@@ -1,4 +1,4 @@
-🦇 Alpha Protocol Monitor (V16)
+Alpha Protocol Monitor (V16)
 
 ![Estado](https://img.shields.io/badge/ESTADO-PRODUCCIÓN-green?style=for-the-badge)
 ![Seguridad](https://img.shields.io/badge/OPSEC-EMPRESARIAL-blue?style=for-the-badge)
@@ -20,19 +20,19 @@ El sistema está construido sobre una **Arquitectura de Bucle Resiliente** con t
 
 ```mermaid
 graph TD
-    A[INICIO: Interruptor Hombre Muerto] -->|Sin Input (5s)| B(Auto-Lanzamiento Task Scheduler)
-    A -->|Tecla '2' Detectada| C(Panel CLI de Administración)
+    A["INICIO: Interruptor Hombre Muerto"] -->|"Sin Input (5s)"| B("Auto-Lanzamiento Task Scheduler")
+    A -->|"Tecla '2' Detectada"| C("Panel CLI de Administración")
     
-    C -->|Actualizar JSON| D[Archivo de Configuración]
-    B -->|Leer Configuración| D
+    C -->|"Actualizar JSON"| D["Archivo de Configuración"]
+    B -->|"Leer Configuración"| D
     
-    B --> E{Verificar Puerto TCP}
-    E -->|Cerrado/Sin Respuesta| F[Esperar y Reintentar (Bucle Infinito)]
+    B --> E{"Verificar Puerto TCP"}
+    E -->|"Cerrado/Sin Respuesta"| F["Esperar y Reintentar (Bucle Infinito)"]
     F --> E
     
-    E -->|CONEXIÓN DETECTADA| G[Detonar Protocolo de Alerta]
+    E -->|"CONEXIÓN DETECTADA"| G["Detonar Protocolo de Alerta"]
     
-    G --> H[Escribir Bitácora Local]
-    G --> I[Enviar Correo Outlook]
+    G --> H["Escribir Bitácora Local"]
+    G --> I["Enviar Correo Outlook"]
     
-    I --> J[Auto-Terminación]
+    I --> J["Auto-Terminación"]
