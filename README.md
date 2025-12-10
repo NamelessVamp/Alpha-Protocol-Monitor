@@ -20,19 +20,19 @@ El sistema está construido sobre una **Arquitectura de Bucle Resiliente** con t
 
 ```mermaid
 graph TD
-    A["INICIO: Interruptor Hombre Muerto"] -->|"Sin Input (5s)"| B("Auto-Lanzamiento Task Scheduler")
-    A -->|"Tecla '2' Detectada"| C("Panel CLI de Administración")
+    A("INICIO: Interruptor Hombre Muerto") -->|"Sin Input (5s)"| B("EJECUTAR CICLO (Automático)")
+    A -->|"Tecla '2' Detectada"| C("PANTALLA DE CONFIGURACIÓN")
     
-    C -->|"Actualizar JSON"| D["Archivo de Configuración"]
-    B -->|"Leer Configuración"| D
+    C -->|"Opción 1: Editar Datos"| D["Actualizar JSON (IP, Puerto, Correos)"]
+    C -->|"Opción 2: Ejecutar"| B
     
     B --> E{"Verificar Puerto TCP"}
-    E -->|"Cerrado/Sin Respuesta"| F["Esperar y Reintentar (Bucle Infinito)"]
-    F --> E
     
-    E -->|"CONEXIÓN DETECTADA"| G["Detonar Protocolo de Alerta"]
+    E -->|"PUERTO ABIERTO"| F["Guardar en Log"]
+    F --> G["Enviar Correo: ABIERTO"]
     
-    G --> H["Escribir Bitácora Local"]
-    G --> I["Enviar Correo Outlook"]
+    E -->|"PUERTO CERRADO"| H["Guardar en Log"]
+    H --> I["Enviar Correo: CERRADO"]
     
-    I --> J["Auto-Terminación"]
+    G --> J("Fin del Proceso")
+    I --> J
